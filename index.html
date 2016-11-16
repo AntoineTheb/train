@@ -3,42 +3,69 @@
   <head>
   </head>
   <body>
-    <canvas id="tutoriel" width="150" height="150"></canvas>
+    <canvas id="tutoriel" width="1000" height="400"></canvas>
     <script>
-
+      var width = 1000;
+      var height = 400;
+      var nbLayers = 7;
       function draw() {
         var canvas = document.getElementById('tutoriel');
         var ctx = canvas.getContext('2d');
-        for (var i = 7; i > 0; --i) {
-          ctx.fillStyle = "hsl(0, 0%, " +  i * 10 + "%";
-          drawMountainLine(ctx, (i * 20));
+
+        for (var i = nbLayers; i > 0; --i) {
+          ctx.fillStyle = "hsl(0, 0%, " +  i * 10 + "%)";
+          drawMountainLine(ctx, height - (i * (height / nbLayers) - (nbLayers / 10)));
         }
+
+        bridge(ctx);
       }
 
       function drawSlope(ctx, x, y) {
         ctx.lineTo(x, y);
         return {
           x: getRandomInt(x, x + 5),
-          y: getRandomInt(y,y - 5)
+          y: getRandomInt(y + 6, y - 5)
         };
       }
 
       function drawMountainLine(ctx, startY) {
         var x = 0;
         var y = startY;
-
+        ctx.beginPath();
         ctx.moveTo(x, y);
-        ctx.lineTo(0, 150);
-        ctx.moveTo(x, y);
-        while(x < 150) {
+        while(x < width) {
           var ret = drawSlope(ctx, x, y);
           x = ret.x;
           y = ret.y;
         }
-        ctx.lineTo(x, 150);
+        ctx.lineTo(x, width);
+        ctx.lineTo(0, width);
+        ctx.lineTo(0, startY);
         ctx.fill();
-        debugger;
       }
+
+      function bridge(ctx) {
+				var x = getRandomInt(0, 10) % 2 === 0 ? getRandomInt(0, 10) : getRandomInt(0, 50) * -1;
+				var bridgeHeight = 30;
+				var archWidth = 50;
+				ctx.beginPath();
+				ctx.moveTo(0, height - bridgeHeight);
+				ctx.lineTo(0, height);
+				while ( x < width) {
+					arch(ctx, x, bridgeHeight, archWidth);
+					x += archWidth + 10;
+ 				}
+				ctx.lineTo(width, height - bridgeHeight);
+				ctx.closePath();
+				ctx.stroke();
+				ctx.fillStyle = "#fff";
+				ctx.fill();
+      }
+
+			function arch(ctx, startX, bridgeHeight, archWidth) {
+				ctx.lineTo(startX, height);
+				ctx.bezierCurveTo(startX, height - bridgeHeight, startX + archWidth, height - bridgeHeight, startX + archWidth, height);
+			}
 
       function getRandomInt(min, max) {
         min = Math.ceil(min);
