@@ -27,6 +27,7 @@ function train() {
 }
 
 function background(ctx) {
+  bgCtx.clearRect(0, 0, width, height);
   var nbLayers = getRandomInt(1, 11);
   debugger;
   for (var i = nbLayers; i > 0; --i) {
