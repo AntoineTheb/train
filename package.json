@@ -11,7 +11,7 @@
     "eslint": "^3.10.2"
   },
   "scripts": {
-    "start": "./node_modules/.bin/eslint src/train.js && ./node_modules/.bin/babel src -d ./",
+    "start": "./node_modules/.bin/eslint src/train.js && ./node_modules/.bin/babel src -d ./ && ./node_modules/.bin/browserify train.js -o bundle.js",
     "babel": "./node_modules/.bin/babel src -d ./",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
