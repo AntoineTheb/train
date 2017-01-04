@@ -25,7 +25,7 @@ var _class = function () {
     this.width = width;
     this.height = height;
 
-    this.nblayers = (0, _utils.getRandomInt)(1, 11);
+    this.nblayers = (0, _utils.getRandomInt)(2, 11);
 
     ctx.clearRect(0, 0, width, height);
   }
@@ -45,8 +45,7 @@ var _class = function () {
 }();
 
 exports.default = _class;
-;
-},{"./MountainLine":3,"./utils":5}],2:[function(require,module,exports){
+},{"./MountainLine":3,"./utils":6}],2:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -101,8 +100,7 @@ var _class = function () {
 }();
 
 exports.default = _class;
-;
-},{"./utils":5}],3:[function(require,module,exports){
+},{"./utils":6}],3:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -158,37 +156,20 @@ var _class = function () {
 }();
 
 exports.default = _class;
-;
-},{"./utils":5}],4:[function(require,module,exports){
+},{"./utils":6}],4:[function(require,module,exports){
 'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _Background = require('./Background');
-
-var _Background2 = _interopRequireDefault(_Background);
-
-var _Bridge = require('./Bridge');
-
-var _Bridge2 = _interopRequireDefault(_Bridge);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var width = 1000;
-var height = 400;
-var x = void 0;
-var bgCanvas = document.getElementById('tutoriel1');
-var bgCtx = bgCanvas.getContext('2d');
-var fgCanvas = document.getElementById('tutoriel2');
-var fgCtx = fgCanvas.getContext('2d');
-
-var Train = function () {
-  // export default class {
-
-  function Train(ctx, height, width, x, bridgeHeight, callback) {
-    _classCallCheck(this, Train);
+var _class = function () {
+  function _class(ctx, height, width, x, bridgeHeight, callback) {
+    _classCallCheck(this, _class);
 
     this.ctx = ctx;
     this.height = height;
@@ -203,7 +184,7 @@ var Train = function () {
     this.y = height - bridgeHeight - this.trainHeight;
   }
 
-  _createClass(Train, [{
+  _createClass(_class, [{
     key: 'render',
     value: function render() {
       this.ctx.clearRect(this.x, this.trainWidth, this.width, this.height);
@@ -214,23 +195,48 @@ var Train = function () {
     }
   }]);
 
-  return Train;
+  return _class;
 }();
+
+exports.default = _class;
+},{}],5:[function(require,module,exports){
+'use strict';
+
+var _Background = require('./Background');
+
+var _Background2 = _interopRequireDefault(_Background);
+
+var _Bridge = require('./Bridge');
+
+var _Bridge2 = _interopRequireDefault(_Bridge);
+
+var _Train = require('./Train');
+
+var _Train2 = _interopRequireDefault(_Train);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var bgCanvas = document.getElementById('tutoriel1');
+var bgCtx = bgCanvas.getContext('2d');
+var fgCanvas = document.getElementById('tutoriel2');
+var fgCtx = fgCanvas.getContext('2d');
+
+var width = Math.max(bgCanvas.width, fgCanvas.width);
+var height = Math.max(bgCanvas.height, fgCanvas.height);
 
 function draw() {
   var x = 0;
   var bg = new _Background2.default(bgCtx, width, height);
-  bg.render();
   var bridge = new _Bridge2.default(bgCtx, height / 10, width, height);
-  bridge.render();
+  var train = new _Train2.default(fgCtx, height, width, x, height / 10, draw);
 
-  var train = new Train(fgCtx, height, width, x, height / 10, draw);
-  // kickstart
+  bg.render();
+  bridge.render();
   window.requestAnimationFrame(train.render.bind(train));
 }
 
 draw();
-},{"./Background":1,"./Bridge":2}],5:[function(require,module,exports){
+},{"./Background":1,"./Bridge":2,"./Train":4}],6:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -241,5 +247,5 @@ function getRandomInt(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min)) + min;
-};
-},{}]},{},[4]);
+}
+},{}]},{},[5]);

@@ -7,7 +7,7 @@ export default class {
     this.width = width;
     this.height = height;
 
-    this.nblayers = getRandomInt(1, 11);
+    this.nblayers = getRandomInt(2, 11);
 
     ctx.clearRect(0, 0, width, height);
   }
@@ -24,4 +24,4 @@ export default class {
     }
   }
 
-};
+}

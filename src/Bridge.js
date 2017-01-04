@@ -39,6 +39,4 @@ export default class {
     this.ctx.fill();
   }
 
-};
-
-
+}

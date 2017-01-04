@@ -1,0 +1,56 @@
+<!DOCTPYE HTML>
+<html>
+  <head>
+  <style>
+    body {
+      color: rgba(0,0,0,0.87);
+      font-size: 1.2em;
+      height: 100%;
+      background-color: rgba(255,255,241,0.2);
+    }
+    #wrapper{
+      position: relative;
+      margin: auto;
+      max-width: 1000px;
+      height: 400px;
+    }
+    canvas {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+    }
+    #infos {
+      position: relative;
+      margin: auto;
+      max-width: 1000px;
+    }
+    a, a:visited {
+      color: #000;
+      text-decoration: underline;
+    }
+    ul {
+      list-style-type: none;
+    }
+  </style>
+  </head>
+  <body>
+    <div id="content">
+      <div id="wrapper">
+        <canvas id="tutoriel1" width="995" height="400"></canvas>
+        <canvas id="tutoriel2" width="1000" height="400" style="z-index: 10"></canvas>
+        <script src="bundle.js"></script>  
+      </div>
+      <div id="infos">
+        <h4>todo:</h4>
+        <ul>
+          <li>smoke and chimney to train</li>
+          <li>responsiveness</li>
+          <li>colors</li>
+          <li>weather effects</li>
+          <li>more stuff</li>
+        </ul>
+        <a href="http://antoinetheberge.ca">back to page</a>
+      </div>
+    </div>
+  </body>
+</html>
