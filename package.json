@@ -11,7 +11,8 @@
     "eslint": "^3.10.2"
   },
   "scripts": {
-    "start": "./node_modules/.bin/eslint src/* && ./node_modules/.bin/babel src -d dist && ./node_modules/.bin/browserify dist/index.js -o index.js && rm dist/*",
+    "start": "./node_modules/.bin/eslint src/* && ./node_modules/.bin/babel src -d dist && ./node_modules/.bin/browserify dist/index.js -o index.js > index.js",
+    "release": "./node_modules/.bin/eslint src/* && ./node_modules/.bin/babel src -d dist && ./node_modules/.bin/browserify -g uglifyify dist/index.js -o index.js",
     "babel": "./node_modules/.bin/babel src -d ./",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

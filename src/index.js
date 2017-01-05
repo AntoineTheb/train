@@ -1,6 +1,7 @@
 import Background from './Background';
 import Bridge from './Bridge';
 import Train from './Train';
+import { getRandomInt } from './utils';
 
 const bgCanvas = document.getElementById('tutoriel1');
 const bgCtx = bgCanvas.getContext('2d');
@@ -12,10 +13,12 @@ const height = Math.max(bgCanvas.height, fgCanvas.height);
 
 function draw() {
   const x = 0;
-  const bg = new Background(bgCtx, width, height);
+  const color = getRandomInt(0, 360);
+
+  const bg = new Background(bgCtx, width, height, color);
   const bridge = new Bridge(bgCtx, height / 10, width, height);
   const train = new Train(fgCtx, height, width, x, height / 10, draw);
-  
+
   bg.render();
   bridge.render();
   window.requestAnimationFrame(train.render.bind(train));
