@@ -17,7 +17,7 @@ var _class = function () {
     this.width = width;
     this.x = x;
     this.callback = callback;
-
+    // add wagons and light if night
     this.trainWidth = 30;
     this.trainHeight = 10;
     this.ctx.fillStyle = 'black';

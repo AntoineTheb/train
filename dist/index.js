@@ -27,8 +27,10 @@ var height = Math.max(bgCanvas.height, fgCanvas.height);
 function draw() {
   var x = 0;
   var color = (0, _utils.getRandomInt)(0, 360);
+  // if mountains are blue-ish to purple-ish, it is night
+  var isNight = color < 300 && color > 200;
 
-  var bg = new _Background2.default(bgCtx, width, height, color);
+  var bg = new _Background2.default(bgCtx, width, height, color, isNight);
   var bridge = new _Bridge2.default(bgCtx, height / 10, width, height);
   var train = new _Train2.default(fgCtx, height, width, x, height / 10, draw);
 
